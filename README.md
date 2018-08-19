@@ -5,6 +5,10 @@ The GAEB standard is a widely used format to exchange tenderings, bills of quant
 
 This project here contains example code in Java to read and convert GAEB files. The client code is generated from the [**AVA**Cloud Swagger Specification](https://avacloud-api.dangl-it.com/swagger-internal).
 
+## Step-By-Step Tutorial
+
+[Please find here a step-by-step tutorial how to use the Java client.](https://www.dangl-it.com/articles/create-edit-and-convert-gaeb-files-in-java-with-the-avacloud-api/)
+
 ## Build
 
 Execute the following command in the root directory of the project:
