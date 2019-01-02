@@ -23,42 +23,31 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
- * ApiError
+ * TokenRefreshPost
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-02T22:46:57.991Z")
-public class ApiError {
-  @SerializedName("errors")
-  private Map<String, List<String>> errors = null;
+public class TokenRefreshPost {
+  @SerializedName("refreshToken")
+  private String refreshToken = null;
 
-  public ApiError errors(Map<String, List<String>> errors) {
-    this.errors = errors;
-    return this;
-  }
-
-  public ApiError putErrorsItem(String key, List<String> errorsItem) {
-    if (this.errors == null) {
-      this.errors = new HashMap<>();
-    }
-    this.errors.put(key, errorsItem);
+  public TokenRefreshPost refreshToken(String refreshToken) {
+    this.refreshToken = refreshToken;
     return this;
   }
 
    /**
-   * Get errors
-   * @return errors
+   * Get refreshToken
+   * @return refreshToken
   **/
-  @ApiModelProperty(value = "")
-  public Map<String, List<String>> getErrors() {
-    return errors;
+  @ApiModelProperty(required = true, value = "")
+  public String getRefreshToken() {
+    return refreshToken;
   }
 
-  public void setErrors(Map<String, List<String>> errors) {
-    this.errors = errors;
+  public void setRefreshToken(String refreshToken) {
+    this.refreshToken = refreshToken;
   }
 
 
@@ -70,22 +59,22 @@ public class ApiError {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ApiError apiError = (ApiError) o;
-    return Objects.equals(this.errors, apiError.errors);
+    TokenRefreshPost tokenRefreshPost = (TokenRefreshPost) o;
+    return Objects.equals(this.refreshToken, tokenRefreshPost.refreshToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors);
+    return Objects.hash(refreshToken);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ApiError {\n");
+    sb.append("class TokenRefreshPost {\n");
     
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("    refreshToken: ").append(toIndentedString(refreshToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -23,42 +23,52 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
- * ApiError
+ * TokenLoginPost
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-02T22:46:57.991Z")
-public class ApiError {
-  @SerializedName("errors")
-  private Map<String, List<String>> errors = null;
+public class TokenLoginPost {
+  @SerializedName("identifier")
+  private String identifier = null;
 
-  public ApiError errors(Map<String, List<String>> errors) {
-    this.errors = errors;
-    return this;
-  }
+  @SerializedName("password")
+  private String password = null;
 
-  public ApiError putErrorsItem(String key, List<String> errorsItem) {
-    if (this.errors == null) {
-      this.errors = new HashMap<>();
-    }
-    this.errors.put(key, errorsItem);
+  public TokenLoginPost identifier(String identifier) {
+    this.identifier = identifier;
     return this;
   }
 
    /**
-   * Get errors
-   * @return errors
+   * Get identifier
+   * @return identifier
   **/
-  @ApiModelProperty(value = "")
-  public Map<String, List<String>> getErrors() {
-    return errors;
+  @ApiModelProperty(required = true, value = "")
+  public String getIdentifier() {
+    return identifier;
   }
 
-  public void setErrors(Map<String, List<String>> errors) {
-    this.errors = errors;
+  public void setIdentifier(String identifier) {
+    this.identifier = identifier;
+  }
+
+  public TokenLoginPost password(String password) {
+    this.password = password;
+    return this;
+  }
+
+   /**
+   * Get password
+   * @return password
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
 
@@ -70,22 +80,24 @@ public class ApiError {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ApiError apiError = (ApiError) o;
-    return Objects.equals(this.errors, apiError.errors);
+    TokenLoginPost tokenLoginPost = (TokenLoginPost) o;
+    return Objects.equals(this.identifier, tokenLoginPost.identifier) &&
+        Objects.equals(this.password, tokenLoginPost.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors);
+    return Objects.hash(identifier, password);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ApiError {\n");
+    sb.append("class TokenLoginPost {\n");
     
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }

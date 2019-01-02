@@ -23,74 +23,73 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
- * TradeDiscountDto
+ * LoginPost
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-02T22:46:57.991Z")
-public class TradeDiscountDto {
-  @SerializedName("id")
-  private String id = null;
+public class LoginPost {
+  @SerializedName("identifier")
+  private String identifier = null;
 
-  @SerializedName("deadline")
-  private Integer deadline = null;
+  @SerializedName("password")
+  private String password = null;
 
-  @SerializedName("rate")
-  private BigDecimal rate = null;
+  @SerializedName("staySignedIn")
+  private Boolean staySignedIn = null;
 
-  public TradeDiscountDto id(String id) {
-    this.id = id;
+  public LoginPost identifier(String identifier) {
+    this.identifier = identifier;
     return this;
   }
 
    /**
-   * Get id
-   * @return id
+   * Get identifier
+   * @return identifier
   **/
   @ApiModelProperty(required = true, value = "")
-  public String getId() {
-    return id;
+  public String getIdentifier() {
+    return identifier;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setIdentifier(String identifier) {
+    this.identifier = identifier;
   }
 
-  public TradeDiscountDto deadline(Integer deadline) {
-    this.deadline = deadline;
+  public LoginPost password(String password) {
+    this.password = password;
     return this;
   }
 
    /**
-   * Get deadline
-   * @return deadline
+   * Get password
+   * @return password
   **/
   @ApiModelProperty(required = true, value = "")
-  public Integer getDeadline() {
-    return deadline;
+  public String getPassword() {
+    return password;
   }
 
-  public void setDeadline(Integer deadline) {
-    this.deadline = deadline;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
-  public TradeDiscountDto rate(BigDecimal rate) {
-    this.rate = rate;
+  public LoginPost staySignedIn(Boolean staySignedIn) {
+    this.staySignedIn = staySignedIn;
     return this;
   }
 
    /**
-   * Get rate
-   * @return rate
+   * Get staySignedIn
+   * @return staySignedIn
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getRate() {
-    return rate;
+  public Boolean isStaySignedIn() {
+    return staySignedIn;
   }
 
-  public void setRate(BigDecimal rate) {
-    this.rate = rate;
+  public void setStaySignedIn(Boolean staySignedIn) {
+    this.staySignedIn = staySignedIn;
   }
 
 
@@ -102,26 +101,26 @@ public class TradeDiscountDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TradeDiscountDto tradeDiscountDto = (TradeDiscountDto) o;
-    return Objects.equals(this.id, tradeDiscountDto.id) &&
-        Objects.equals(this.deadline, tradeDiscountDto.deadline) &&
-        Objects.equals(this.rate, tradeDiscountDto.rate);
+    LoginPost loginPost = (LoginPost) o;
+    return Objects.equals(this.identifier, loginPost.identifier) &&
+        Objects.equals(this.password, loginPost.password) &&
+        Objects.equals(this.staySignedIn, loginPost.staySignedIn);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, deadline, rate);
+    return Objects.hash(identifier, password, staySignedIn);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TradeDiscountDto {\n");
+    sb.append("class LoginPost {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    deadline: ").append(toIndentedString(deadline)).append("\n");
-    sb.append("    rate: ").append(toIndentedString(rate)).append("\n");
+    sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    staySignedIn: ").append(toIndentedString(staySignedIn)).append("\n");
     sb.append("}");
     return sb.toString();
   }

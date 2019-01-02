@@ -15,7 +15,6 @@ package com.danglit.avacloud.client.models;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.danglit.avacloud.client.models.ItemNumberSchemaTierDto;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -28,49 +27,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ItemNumberSchemaDto
+ * ForgotPasswordPost
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-02T22:46:57.991Z")
-public class ItemNumberSchemaDto {
-  @SerializedName("totalLength")
-  private Integer totalLength = null;
+public class ForgotPasswordPost {
+  @SerializedName("identifier")
+  private String identifier = null;
 
-  @SerializedName("tiers")
-  private List<ItemNumberSchemaTierDto> tiers = null;
+  @SerializedName("preferredLanguages")
+  private List<String> preferredLanguages = null;
+
+  public ForgotPasswordPost identifier(String identifier) {
+    this.identifier = identifier;
+    return this;
+  }
 
    /**
-   * Get totalLength
-   * @return totalLength
+   * Get identifier
+   * @return identifier
   **/
   @ApiModelProperty(required = true, value = "")
-  public Integer getTotalLength() {
-    return totalLength;
+  public String getIdentifier() {
+    return identifier;
   }
 
-  public ItemNumberSchemaDto tiers(List<ItemNumberSchemaTierDto> tiers) {
-    this.tiers = tiers;
+  public void setIdentifier(String identifier) {
+    this.identifier = identifier;
+  }
+
+  public ForgotPasswordPost preferredLanguages(List<String> preferredLanguages) {
+    this.preferredLanguages = preferredLanguages;
     return this;
   }
 
-  public ItemNumberSchemaDto addTiersItem(ItemNumberSchemaTierDto tiersItem) {
-    if (this.tiers == null) {
-      this.tiers = new ArrayList<>();
+  public ForgotPasswordPost addPreferredLanguagesItem(String preferredLanguagesItem) {
+    if (this.preferredLanguages == null) {
+      this.preferredLanguages = new ArrayList<>();
     }
-    this.tiers.add(tiersItem);
+    this.preferredLanguages.add(preferredLanguagesItem);
     return this;
   }
 
    /**
-   * Get tiers
-   * @return tiers
+   * Get preferredLanguages
+   * @return preferredLanguages
   **/
   @ApiModelProperty(value = "")
-  public List<ItemNumberSchemaTierDto> getTiers() {
-    return tiers;
+  public List<String> getPreferredLanguages() {
+    return preferredLanguages;
   }
 
-  public void setTiers(List<ItemNumberSchemaTierDto> tiers) {
-    this.tiers = tiers;
+  public void setPreferredLanguages(List<String> preferredLanguages) {
+    this.preferredLanguages = preferredLanguages;
   }
 
 
@@ -82,24 +90,24 @@ public class ItemNumberSchemaDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ItemNumberSchemaDto itemNumberSchemaDto = (ItemNumberSchemaDto) o;
-    return Objects.equals(this.totalLength, itemNumberSchemaDto.totalLength) &&
-        Objects.equals(this.tiers, itemNumberSchemaDto.tiers);
+    ForgotPasswordPost forgotPasswordPost = (ForgotPasswordPost) o;
+    return Objects.equals(this.identifier, forgotPasswordPost.identifier) &&
+        Objects.equals(this.preferredLanguages, forgotPasswordPost.preferredLanguages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalLength, tiers);
+    return Objects.hash(identifier, preferredLanguages);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ItemNumberSchemaDto {\n");
+    sb.append("class ForgotPasswordPost {\n");
     
-    sb.append("    totalLength: ").append(toIndentedString(totalLength)).append("\n");
-    sb.append("    tiers: ").append(toIndentedString(tiers)).append("\n");
+    sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("    preferredLanguages: ").append(toIndentedString(preferredLanguages)).append("\n");
     sb.append("}");
     return sb.toString();
   }

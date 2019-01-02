@@ -25,26 +25,24 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Represent valid GAEB target types
+ * 
  */
-@JsonAdapter(DestinationGaebType.Adapter.class)
-public enum DestinationGaebType {
+@JsonAdapter(ItemNumberSchemaTierTypeDto.Adapter.class)
+public enum ItemNumberSchemaTierTypeDto {
   
-  GAEB90("Gaeb90"),
+  UNDEFINED("Undefined"),
   
-  GAEB2000("Gaeb2000"),
+  INDEX("Index"),
   
-  GAEB2000COMMERCE("Gaeb2000Commerce"),
+  POSITION("Position"),
   
-  GAEBXML_V3_1("GaebXml_V3_1"),
+  GROUP("Group"),
   
-  GAEBXML_V3_2("GaebXml_V3_2"),
-  
-  GAEBXML_V3_2_COMMERCE("GaebXml_V3_2_Commerce");
+  LOT("Lot");
 
   private String value;
 
-  DestinationGaebType(String value) {
+  ItemNumberSchemaTierTypeDto(String value) {
     this.value = value;
   }
 
@@ -57,8 +55,8 @@ public enum DestinationGaebType {
     return String.valueOf(value);
   }
 
-  public static DestinationGaebType fromValue(String text) {
-    for (DestinationGaebType b : DestinationGaebType.values()) {
+  public static ItemNumberSchemaTierTypeDto fromValue(String text) {
+    for (ItemNumberSchemaTierTypeDto b : ItemNumberSchemaTierTypeDto.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -66,16 +64,16 @@ public enum DestinationGaebType {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<DestinationGaebType> {
+  public static class Adapter extends TypeAdapter<ItemNumberSchemaTierTypeDto> {
     @Override
-    public void write(final JsonWriter jsonWriter, final DestinationGaebType enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final ItemNumberSchemaTierTypeDto enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public DestinationGaebType read(final JsonReader jsonReader) throws IOException {
+    public ItemNumberSchemaTierTypeDto read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return DestinationGaebType.fromValue(String.valueOf(value));
+      return ItemNumberSchemaTierTypeDto.fromValue(String.valueOf(value));
     }
   }
 }

@@ -25,26 +25,20 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Represent valid GAEB target types
+ * 
  */
-@JsonAdapter(DestinationGaebType.Adapter.class)
-public enum DestinationGaebType {
+@JsonAdapter(PositionTypeDto.Adapter.class)
+public enum PositionTypeDto {
   
-  GAEB90("Gaeb90"),
+  REGULAR("Regular"),
   
-  GAEB2000("Gaeb2000"),
+  OPTIONAL("Optional"),
   
-  GAEB2000COMMERCE("Gaeb2000Commerce"),
-  
-  GAEBXML_V3_1("GaebXml_V3_1"),
-  
-  GAEBXML_V3_2("GaebXml_V3_2"),
-  
-  GAEBXML_V3_2_COMMERCE("GaebXml_V3_2_Commerce");
+  ALTERNATIVE("Alternative");
 
   private String value;
 
-  DestinationGaebType(String value) {
+  PositionTypeDto(String value) {
     this.value = value;
   }
 
@@ -57,8 +51,8 @@ public enum DestinationGaebType {
     return String.valueOf(value);
   }
 
-  public static DestinationGaebType fromValue(String text) {
-    for (DestinationGaebType b : DestinationGaebType.values()) {
+  public static PositionTypeDto fromValue(String text) {
+    for (PositionTypeDto b : PositionTypeDto.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -66,16 +60,16 @@ public enum DestinationGaebType {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<DestinationGaebType> {
+  public static class Adapter extends TypeAdapter<PositionTypeDto> {
     @Override
-    public void write(final JsonWriter jsonWriter, final DestinationGaebType enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final PositionTypeDto enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public DestinationGaebType read(final JsonReader jsonReader) throws IOException {
+    public PositionTypeDto read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return DestinationGaebType.fromValue(String.valueOf(value));
+      return PositionTypeDto.fromValue(String.valueOf(value));
     }
   }
 }
