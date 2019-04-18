@@ -19,7 +19,7 @@ Execute the following command in the root directory of the project:
 
 Execute the compiled library with the following arguments:
 
-    java -jar com.danglit.avacloud.client-1.0.8.jar <ClientId> <ClientSecret> <PathToGaebFile>
+    java -jar target/com.danglit.avacloud.client-1.1.0.jar <ClientId> <ClientSecret> <PathToGaebFile>
 
 Replace the arguments with the following:
 
@@ -31,10 +31,13 @@ Replace the arguments with the following:
 
 If you don't have values for `ClientId` and `ClientSecret` yet, you can [check out the documentation](https://docs.dangl-it.com/Projects/AVACloud/latest/howto/registration/developer_signup.html) for instructions on how to register for **AVA**Cloud and create an OAuth2 client.
 
-This example app does two operations:
+You can directly use the file `GAEBXML_EN.X86` in this repository if you don't have a GAEB file at hand.
+
+This example app does three operations:
 
 1. The local GAEB file is transformed to Excel and saved next to the input file
 2. The local GAEB file is converted to the unified **Dangl.AVA** format and the total price as well as the number of positions in the bill of quantities is printed to the console.
+3. It prints all positions to the console, in the format: _Item Number - Short Text - Unit Tag - Unit Price_
 
 ---
 [License](./LICENSE.md)

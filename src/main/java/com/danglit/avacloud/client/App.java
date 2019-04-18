@@ -13,9 +13,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
 
-/**
- * Hello world!
- */
 public final class App {
     private App() {
     }
@@ -90,6 +87,8 @@ public final class App {
         System.out.println("Project total price (net): " + totalPrice);
         Integer countOfPositions = getProjectPositionCount(project);
         System.out.println("Count of positions: " + countOfPositions);
+        System.out.println("All positions in the project:");
+        printPositionsInProject(project);
     }
 
     private static BigDecimal getProjectTotalPrice(ProjectDto project) {
@@ -117,5 +116,37 @@ public final class App {
             }
         }
         return positionsCount;
+    }
+
+    private static List<PositionDto> getPositions(List<IElementDto> elements) {
+        List<PositionDto> positions = new ArrayList<PositionDto>();
+
+        for(IElementDto element: elements) {
+            if (element instanceof PositionDto) {
+                positions.add((PositionDto)element);
+            } else if (element instanceof ServiceSpecificationGroupDto) {
+                List<PositionDto> subPositions = getPositions(((ServiceSpecificationGroupDto)element).getElements());
+                positions.addAll(subPositions);
+            }
+        }
+
+        return positions;
+    }
+
+    private static void printPositionsInProject(ProjectDto project) {
+        ServiceSpecificationDto servSpec = project
+            .getServiceSpecifications()
+            .get(0);
+        List<PositionDto> positions = getPositions(servSpec.getElements());
+
+        for(PositionDto position: positions) {
+            System.out.print(position.getItemNumber().getStringRepresentation());
+            System.out.print(" - ");
+            System.out.print(position.getShortText());
+            System.out.print(" - ");
+            System.out.print(position.getUnitTag());
+            System.out.print(" - ");
+            System.out.println(position.getUnitPrice());
+        }
     }
 }
