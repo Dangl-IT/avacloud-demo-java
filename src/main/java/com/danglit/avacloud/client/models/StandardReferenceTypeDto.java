@@ -25,24 +25,22 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * This enumeration describes the type of a catalogue. Catalogues, or collections, hold information to categorize and describe items. For example, the German DIN 276 cost group standards describe different types of costs for building projects. When referencing the DIN 276 catalogue and providing an item key or identifier, it is possible to reference data in this catalogue.
+ * This enumeration identifies a pre-known standard used for referencing standardized descriptions.
  */
-@JsonAdapter(CatalogueTypeDto.Adapter.class)
-public enum CatalogueTypeDto {
+@JsonAdapter(StandardReferenceTypeDto.Adapter.class)
+public enum StandardReferenceTypeDto {
   
   UNKNOWN("Unknown"),
   
-  LOCATION("Location"),
+  STLB("StLB"),
   
-  DIN276("DIN276"),
+  STLK("StLK"),
   
-  COSTUNIT("CostUnit"),
-  
-  WORKCATEGORY("WorkCategory");
+  STLBBAUZ("STLBBauZ");
 
   private String value;
 
-  CatalogueTypeDto(String value) {
+  StandardReferenceTypeDto(String value) {
     this.value = value;
   }
 
@@ -55,8 +53,8 @@ public enum CatalogueTypeDto {
     return String.valueOf(value);
   }
 
-  public static CatalogueTypeDto fromValue(String text) {
-    for (CatalogueTypeDto b : CatalogueTypeDto.values()) {
+  public static StandardReferenceTypeDto fromValue(String text) {
+    for (StandardReferenceTypeDto b : StandardReferenceTypeDto.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -64,16 +62,16 @@ public enum CatalogueTypeDto {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<CatalogueTypeDto> {
+  public static class Adapter extends TypeAdapter<StandardReferenceTypeDto> {
     @Override
-    public void write(final JsonWriter jsonWriter, final CatalogueTypeDto enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final StandardReferenceTypeDto enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public CatalogueTypeDto read(final JsonReader jsonReader) throws IOException {
+    public StandardReferenceTypeDto read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return CatalogueTypeDto.fromValue(String.valueOf(value));
+      return StandardReferenceTypeDto.fromValue(String.valueOf(value));
     }
   }
 }

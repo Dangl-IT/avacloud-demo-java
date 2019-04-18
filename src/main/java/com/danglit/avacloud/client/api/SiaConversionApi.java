@@ -37,14 +37,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ExcelConversionApi {
+public class SiaConversionApi {
     private ApiClient apiClient;
 
-    public ExcelConversionApi() {
+    public SiaConversionApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public ExcelConversionApi(ApiClient apiClient) {
+    public SiaConversionApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -57,10 +57,8 @@ public class ExcelConversionApi {
     }
 
     /**
-     * Build call for excelConversionConvertToAva
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * Build call for siaConversionConvertToAva
+     * @param siaFile The input file (optional)
      * @param removePlainTextLongTexts If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
      * @param removeHtmlLongTexts If set to true, html long texts will be removed from the output to reduce response sizes (optional)
      * @param progressListener Progress listener
@@ -68,18 +66,14 @@ public class ExcelConversionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call excelConversionConvertToAvaCall(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call siaConversionConvertToAvaCall(File siaFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/conversion/excel/ava";
+        String localVarPath = "/conversion/sia/ava";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (readNewElements != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ReadNewElements", readNewElements));
-        if (rebuildItemNumberSchema != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("RebuildItemNumberSchema", rebuildItemNumberSchema));
         if (removePlainTextLongTexts != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("RemovePlainTextLongTexts", removePlainTextLongTexts));
         if (removeHtmlLongTexts != null)
@@ -88,8 +82,8 @@ public class ExcelConversionApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (excelFile != null)
-        localVarFormParams.put("excelFile", excelFile);
+        if (siaFile != null)
+        localVarFormParams.put("siaFile", siaFile);
 
         final String[] localVarAccepts = {
             "application/vnd.com.dangl-it.ProjectDto.v1+json"
@@ -120,60 +114,54 @@ public class ExcelConversionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call excelConversionConvertToAvaValidateBeforeCall(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call siaConversionConvertToAvaValidateBeforeCall(File siaFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = excelConversionConvertToAvaCall(excelFile, readNewElements, rebuildItemNumberSchema, removePlainTextLongTexts, removeHtmlLongTexts, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = siaConversionConvertToAvaCall(siaFile, removePlainTextLongTexts, removeHtmlLongTexts, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Converts Excel files to Dangl.AVA projects.
+     * Converts SIA 451 files to Dangl.AVA projects
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param removePlainTextLongTexts If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
      * @param removeHtmlLongTexts If set to true, html long texts will be removed from the output to reduce response sizes (optional)
      * @return ProjectDto
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ProjectDto excelConversionConvertToAva(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts) throws ApiException {
-        ApiResponse<ProjectDto> resp = excelConversionConvertToAvaWithHttpInfo(excelFile, readNewElements, rebuildItemNumberSchema, removePlainTextLongTexts, removeHtmlLongTexts);
+    public ProjectDto siaConversionConvertToAva(File siaFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts) throws ApiException {
+        ApiResponse<ProjectDto> resp = siaConversionConvertToAvaWithHttpInfo(siaFile, removePlainTextLongTexts, removeHtmlLongTexts);
         return resp.getData();
     }
 
     /**
-     * Converts Excel files to Dangl.AVA projects.
+     * Converts SIA 451 files to Dangl.AVA projects
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param removePlainTextLongTexts If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
      * @param removeHtmlLongTexts If set to true, html long texts will be removed from the output to reduce response sizes (optional)
      * @return ApiResponse&lt;ProjectDto&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ProjectDto> excelConversionConvertToAvaWithHttpInfo(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts) throws ApiException {
-        com.squareup.okhttp.Call call = excelConversionConvertToAvaValidateBeforeCall(excelFile, readNewElements, rebuildItemNumberSchema, removePlainTextLongTexts, removeHtmlLongTexts, null, null);
+    public ApiResponse<ProjectDto> siaConversionConvertToAvaWithHttpInfo(File siaFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts) throws ApiException {
+        com.squareup.okhttp.Call call = siaConversionConvertToAvaValidateBeforeCall(siaFile, removePlainTextLongTexts, removeHtmlLongTexts, null, null);
         Type localVarReturnType = new TypeToken<ProjectDto>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Converts Excel files to Dangl.AVA projects. (asynchronously)
+     * Converts SIA 451 files to Dangl.AVA projects (asynchronously)
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param removePlainTextLongTexts If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
      * @param removeHtmlLongTexts If set to true, html long texts will be removed from the output to reduce response sizes (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call excelConversionConvertToAvaAsync(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ApiCallback<ProjectDto> callback) throws ApiException {
+    public com.squareup.okhttp.Call siaConversionConvertToAvaAsync(File siaFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ApiCallback<ProjectDto> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -194,16 +182,14 @@ public class ExcelConversionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = excelConversionConvertToAvaValidateBeforeCall(excelFile, readNewElements, rebuildItemNumberSchema, removePlainTextLongTexts, removeHtmlLongTexts, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = siaConversionConvertToAvaValidateBeforeCall(siaFile, removePlainTextLongTexts, removeHtmlLongTexts, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ProjectDto>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for excelConversionConvertToExcel
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * Build call for siaConversionConvertToExcel
+     * @param siaFile The input file (optional)
      * @param writePrices Defaults to true (optional)
      * @param writeLongTexts Defaults to true (optional)
      * @param conversionCulture The culture that should be used for the conversion process, to have localized Excel files (optional)
@@ -212,18 +198,14 @@ public class ExcelConversionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call excelConversionConvertToExcelCall(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call siaConversionConvertToExcelCall(File siaFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/conversion/excel/excel";
+        String localVarPath = "/conversion/sia/excel";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (readNewElements != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ReadNewElements", readNewElements));
-        if (rebuildItemNumberSchema != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("RebuildItemNumberSchema", rebuildItemNumberSchema));
         if (writePrices != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("WritePrices", writePrices));
         if (writeLongTexts != null)
@@ -234,8 +216,8 @@ public class ExcelConversionApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (excelFile != null)
-        localVarFormParams.put("excelFile", excelFile);
+        if (siaFile != null)
+        localVarFormParams.put("siaFile", siaFile);
 
         final String[] localVarAccepts = {
             "text/plain", "application/json", "text/json"
@@ -266,55 +248,49 @@ public class ExcelConversionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call excelConversionConvertToExcelValidateBeforeCall(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call siaConversionConvertToExcelValidateBeforeCall(File siaFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = excelConversionConvertToExcelCall(excelFile, readNewElements, rebuildItemNumberSchema, writePrices, writeLongTexts, conversionCulture, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = siaConversionConvertToExcelCall(siaFile, writePrices, writeLongTexts, conversionCulture, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Converts Excel files to Excel files. Used, for example, when elements were added in excel to generate or modify a project. The Excel file can then be shared containing the full project with all formattings, formulas and styles applied.
+     * Converts SIA 451 files to Excel
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param writePrices Defaults to true (optional)
      * @param writeLongTexts Defaults to true (optional)
      * @param conversionCulture The culture that should be used for the conversion process, to have localized Excel files (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File excelConversionConvertToExcel(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean writePrices, Boolean writeLongTexts, String conversionCulture) throws ApiException {
-        ApiResponse<File> resp = excelConversionConvertToExcelWithHttpInfo(excelFile, readNewElements, rebuildItemNumberSchema, writePrices, writeLongTexts, conversionCulture);
+    public File siaConversionConvertToExcel(File siaFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture) throws ApiException {
+        ApiResponse<File> resp = siaConversionConvertToExcelWithHttpInfo(siaFile, writePrices, writeLongTexts, conversionCulture);
         return resp.getData();
     }
 
     /**
-     * Converts Excel files to Excel files. Used, for example, when elements were added in excel to generate or modify a project. The Excel file can then be shared containing the full project with all formattings, formulas and styles applied.
+     * Converts SIA 451 files to Excel
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param writePrices Defaults to true (optional)
      * @param writeLongTexts Defaults to true (optional)
      * @param conversionCulture The culture that should be used for the conversion process, to have localized Excel files (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> excelConversionConvertToExcelWithHttpInfo(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean writePrices, Boolean writeLongTexts, String conversionCulture) throws ApiException {
-        com.squareup.okhttp.Call call = excelConversionConvertToExcelValidateBeforeCall(excelFile, readNewElements, rebuildItemNumberSchema, writePrices, writeLongTexts, conversionCulture, null, null);
+    public ApiResponse<File> siaConversionConvertToExcelWithHttpInfo(File siaFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture) throws ApiException {
+        com.squareup.okhttp.Call call = siaConversionConvertToExcelValidateBeforeCall(siaFile, writePrices, writeLongTexts, conversionCulture, null, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Converts Excel files to Excel files. Used, for example, when elements were added in excel to generate or modify a project. The Excel file can then be shared containing the full project with all formattings, formulas and styles applied. (asynchronously)
+     * Converts SIA 451 files to Excel (asynchronously)
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param writePrices Defaults to true (optional)
      * @param writeLongTexts Defaults to true (optional)
      * @param conversionCulture The culture that should be used for the conversion process, to have localized Excel files (optional)
@@ -322,7 +298,7 @@ public class ExcelConversionApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call excelConversionConvertToExcelAsync(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call siaConversionConvertToExcelAsync(File siaFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -343,16 +319,14 @@ public class ExcelConversionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = excelConversionConvertToExcelValidateBeforeCall(excelFile, readNewElements, rebuildItemNumberSchema, writePrices, writeLongTexts, conversionCulture, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = siaConversionConvertToExcelValidateBeforeCall(siaFile, writePrices, writeLongTexts, conversionCulture, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for excelConversionConvertToGaeb
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * Build call for siaConversionConvertToGaeb
+     * @param siaFile The input file (optional)
      * @param destinationGaebType Defaults to GAEB XML V3.2 (optional)
      * @param targetExchangePhaseTransform Defaults to none, meaning no transformation will be done (optional)
      * @param progressListener Progress listener
@@ -360,18 +334,14 @@ public class ExcelConversionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call excelConversionConvertToGaebCall(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationGaebType, String targetExchangePhaseTransform, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call siaConversionConvertToGaebCall(File siaFile, String destinationGaebType, String targetExchangePhaseTransform, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/conversion/excel/gaeb";
+        String localVarPath = "/conversion/sia/gaeb";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (readNewElements != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ReadNewElements", readNewElements));
-        if (rebuildItemNumberSchema != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("RebuildItemNumberSchema", rebuildItemNumberSchema));
         if (destinationGaebType != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("DestinationGaebType", destinationGaebType));
         if (targetExchangePhaseTransform != null)
@@ -380,8 +350,8 @@ public class ExcelConversionApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (excelFile != null)
-        localVarFormParams.put("excelFile", excelFile);
+        if (siaFile != null)
+        localVarFormParams.put("siaFile", siaFile);
 
         final String[] localVarAccepts = {
             "text/plain", "application/json", "text/json"
@@ -412,60 +382,54 @@ public class ExcelConversionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call excelConversionConvertToGaebValidateBeforeCall(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationGaebType, String targetExchangePhaseTransform, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call siaConversionConvertToGaebValidateBeforeCall(File siaFile, String destinationGaebType, String targetExchangePhaseTransform, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = excelConversionConvertToGaebCall(excelFile, readNewElements, rebuildItemNumberSchema, destinationGaebType, targetExchangePhaseTransform, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = siaConversionConvertToGaebCall(siaFile, destinationGaebType, targetExchangePhaseTransform, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Converts Excel files to GAEB files.
+     * Converts SIA 451 files to GAEB files
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param destinationGaebType Defaults to GAEB XML V3.2 (optional)
      * @param targetExchangePhaseTransform Defaults to none, meaning no transformation will be done (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File excelConversionConvertToGaeb(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationGaebType, String targetExchangePhaseTransform) throws ApiException {
-        ApiResponse<File> resp = excelConversionConvertToGaebWithHttpInfo(excelFile, readNewElements, rebuildItemNumberSchema, destinationGaebType, targetExchangePhaseTransform);
+    public File siaConversionConvertToGaeb(File siaFile, String destinationGaebType, String targetExchangePhaseTransform) throws ApiException {
+        ApiResponse<File> resp = siaConversionConvertToGaebWithHttpInfo(siaFile, destinationGaebType, targetExchangePhaseTransform);
         return resp.getData();
     }
 
     /**
-     * Converts Excel files to GAEB files.
+     * Converts SIA 451 files to GAEB files
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param destinationGaebType Defaults to GAEB XML V3.2 (optional)
      * @param targetExchangePhaseTransform Defaults to none, meaning no transformation will be done (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> excelConversionConvertToGaebWithHttpInfo(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationGaebType, String targetExchangePhaseTransform) throws ApiException {
-        com.squareup.okhttp.Call call = excelConversionConvertToGaebValidateBeforeCall(excelFile, readNewElements, rebuildItemNumberSchema, destinationGaebType, targetExchangePhaseTransform, null, null);
+    public ApiResponse<File> siaConversionConvertToGaebWithHttpInfo(File siaFile, String destinationGaebType, String targetExchangePhaseTransform) throws ApiException {
+        com.squareup.okhttp.Call call = siaConversionConvertToGaebValidateBeforeCall(siaFile, destinationGaebType, targetExchangePhaseTransform, null, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Converts Excel files to GAEB files. (asynchronously)
+     * Converts SIA 451 files to GAEB files (asynchronously)
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param destinationGaebType Defaults to GAEB XML V3.2 (optional)
      * @param targetExchangePhaseTransform Defaults to none, meaning no transformation will be done (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call excelConversionConvertToGaebAsync(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationGaebType, String targetExchangePhaseTransform, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call siaConversionConvertToGaebAsync(File siaFile, String destinationGaebType, String targetExchangePhaseTransform, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -486,16 +450,14 @@ public class ExcelConversionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = excelConversionConvertToGaebValidateBeforeCall(excelFile, readNewElements, rebuildItemNumberSchema, destinationGaebType, targetExchangePhaseTransform, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = siaConversionConvertToGaebValidateBeforeCall(siaFile, destinationGaebType, targetExchangePhaseTransform, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for excelConversionConvertToOenorm
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * Build call for siaConversionConvertToOenorm
+     * @param siaFile The input file (optional)
      * @param destinationOenormType Defaults to Lv2015 (optional)
      * @param tryRepairProjectStructure Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
      * @param progressListener Progress listener
@@ -503,18 +465,14 @@ public class ExcelConversionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call excelConversionConvertToOenormCall(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationOenormType, Boolean tryRepairProjectStructure, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call siaConversionConvertToOenormCall(File siaFile, String destinationOenormType, Boolean tryRepairProjectStructure, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/conversion/excel/oenorm";
+        String localVarPath = "/conversion/sia/oenorm";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (readNewElements != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("ReadNewElements", readNewElements));
-        if (rebuildItemNumberSchema != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("RebuildItemNumberSchema", rebuildItemNumberSchema));
         if (destinationOenormType != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("DestinationOenormType", destinationOenormType));
         if (tryRepairProjectStructure != null)
@@ -523,8 +481,8 @@ public class ExcelConversionApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (excelFile != null)
-        localVarFormParams.put("excelFile", excelFile);
+        if (siaFile != null)
+        localVarFormParams.put("siaFile", siaFile);
 
         final String[] localVarAccepts = {
             "text/plain", "application/json", "text/json"
@@ -555,60 +513,54 @@ public class ExcelConversionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call excelConversionConvertToOenormValidateBeforeCall(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationOenormType, Boolean tryRepairProjectStructure, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call siaConversionConvertToOenormValidateBeforeCall(File siaFile, String destinationOenormType, Boolean tryRepairProjectStructure, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = excelConversionConvertToOenormCall(excelFile, readNewElements, rebuildItemNumberSchema, destinationOenormType, tryRepairProjectStructure, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = siaConversionConvertToOenormCall(siaFile, destinationOenormType, tryRepairProjectStructure, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Converts Excel files to Oenorm files.
+     * Converts SIA 451 files to Oenorm files
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param destinationOenormType Defaults to Lv2015 (optional)
      * @param tryRepairProjectStructure Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File excelConversionConvertToOenorm(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationOenormType, Boolean tryRepairProjectStructure) throws ApiException {
-        ApiResponse<File> resp = excelConversionConvertToOenormWithHttpInfo(excelFile, readNewElements, rebuildItemNumberSchema, destinationOenormType, tryRepairProjectStructure);
+    public File siaConversionConvertToOenorm(File siaFile, String destinationOenormType, Boolean tryRepairProjectStructure) throws ApiException {
+        ApiResponse<File> resp = siaConversionConvertToOenormWithHttpInfo(siaFile, destinationOenormType, tryRepairProjectStructure);
         return resp.getData();
     }
 
     /**
-     * Converts Excel files to Oenorm files.
+     * Converts SIA 451 files to Oenorm files
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param destinationOenormType Defaults to Lv2015 (optional)
      * @param tryRepairProjectStructure Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> excelConversionConvertToOenormWithHttpInfo(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationOenormType, Boolean tryRepairProjectStructure) throws ApiException {
-        com.squareup.okhttp.Call call = excelConversionConvertToOenormValidateBeforeCall(excelFile, readNewElements, rebuildItemNumberSchema, destinationOenormType, tryRepairProjectStructure, null, null);
+    public ApiResponse<File> siaConversionConvertToOenormWithHttpInfo(File siaFile, String destinationOenormType, Boolean tryRepairProjectStructure) throws ApiException {
+        com.squareup.okhttp.Call call = siaConversionConvertToOenormValidateBeforeCall(siaFile, destinationOenormType, tryRepairProjectStructure, null, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Converts Excel files to Oenorm files. (asynchronously)
+     * Converts SIA 451 files to Oenorm files (asynchronously)
      * 
-     * @param excelFile The input file (optional)
-     * @param readNewElements Defaults to false (optional)
-     * @param rebuildItemNumberSchema When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+     * @param siaFile The input file (optional)
      * @param destinationOenormType Defaults to Lv2015 (optional)
      * @param tryRepairProjectStructure Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call excelConversionConvertToOenormAsync(File excelFile, Boolean readNewElements, Boolean rebuildItemNumberSchema, String destinationOenormType, Boolean tryRepairProjectStructure, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call siaConversionConvertToOenormAsync(File siaFile, String destinationOenormType, Boolean tryRepairProjectStructure, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -629,7 +581,7 @@ public class ExcelConversionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = excelConversionConvertToOenormValidateBeforeCall(excelFile, readNewElements, rebuildItemNumberSchema, destinationOenormType, tryRepairProjectStructure, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = siaConversionConvertToOenormValidateBeforeCall(siaFile, destinationOenormType, tryRepairProjectStructure, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

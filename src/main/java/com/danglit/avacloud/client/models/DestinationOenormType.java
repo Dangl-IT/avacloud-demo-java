@@ -25,24 +25,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * This enumeration describes the type of a catalogue. Catalogues, or collections, hold information to categorize and describe items. For example, the German DIN 276 cost group standards describe different types of costs for building projects. When referencing the DIN 276 catalogue and providing an item key or identifier, it is possible to reference data in this catalogue.
+ * Represents valid Oenorm target types
  */
-@JsonAdapter(CatalogueTypeDto.Adapter.class)
-public enum CatalogueTypeDto {
+@JsonAdapter(DestinationOenormType.Adapter.class)
+public enum DestinationOenormType {
   
-  UNKNOWN("Unknown"),
+  LV2015("Lv2015"),
   
-  LOCATION("Location"),
-  
-  DIN276("DIN276"),
-  
-  COSTUNIT("CostUnit"),
-  
-  WORKCATEGORY("WorkCategory");
+  LB2015("Lb2015");
 
   private String value;
 
-  CatalogueTypeDto(String value) {
+  DestinationOenormType(String value) {
     this.value = value;
   }
 
@@ -55,8 +49,8 @@ public enum CatalogueTypeDto {
     return String.valueOf(value);
   }
 
-  public static CatalogueTypeDto fromValue(String text) {
-    for (CatalogueTypeDto b : CatalogueTypeDto.values()) {
+  public static DestinationOenormType fromValue(String text) {
+    for (DestinationOenormType b : DestinationOenormType.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -64,16 +58,16 @@ public enum CatalogueTypeDto {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<CatalogueTypeDto> {
+  public static class Adapter extends TypeAdapter<DestinationOenormType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final CatalogueTypeDto enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final DestinationOenormType enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public CatalogueTypeDto read(final JsonReader jsonReader) throws IOException {
+    public DestinationOenormType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return CatalogueTypeDto.fromValue(String.valueOf(value));
+      return DestinationOenormType.fromValue(String.valueOf(value));
     }
   }
 }

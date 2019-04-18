@@ -25,24 +25,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * This enumeration describes the type of a catalogue. Catalogues, or collections, hold information to categorize and describe items. For example, the German DIN 276 cost group standards describe different types of costs for building projects. When referencing the DIN 276 catalogue and providing an item key or identifier, it is possible to reference data in this catalogue.
+ * This enumeration represents the unit of a duration
  */
-@JsonAdapter(CatalogueTypeDto.Adapter.class)
-public enum CatalogueTypeDto {
+@JsonAdapter(DurationUnitDto.Adapter.class)
+public enum DurationUnitDto {
   
-  UNKNOWN("Unknown"),
+  MONTHS("Months"),
   
-  LOCATION("Location"),
-  
-  DIN276("DIN276"),
-  
-  COSTUNIT("CostUnit"),
-  
-  WORKCATEGORY("WorkCategory");
+  YEARS("Years");
 
   private String value;
 
-  CatalogueTypeDto(String value) {
+  DurationUnitDto(String value) {
     this.value = value;
   }
 
@@ -55,8 +49,8 @@ public enum CatalogueTypeDto {
     return String.valueOf(value);
   }
 
-  public static CatalogueTypeDto fromValue(String text) {
-    for (CatalogueTypeDto b : CatalogueTypeDto.values()) {
+  public static DurationUnitDto fromValue(String text) {
+    for (DurationUnitDto b : DurationUnitDto.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -64,16 +58,16 @@ public enum CatalogueTypeDto {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<CatalogueTypeDto> {
+  public static class Adapter extends TypeAdapter<DurationUnitDto> {
     @Override
-    public void write(final JsonWriter jsonWriter, final CatalogueTypeDto enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final DurationUnitDto enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public CatalogueTypeDto read(final JsonReader jsonReader) throws IOException {
+    public DurationUnitDto read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return CatalogueTypeDto.fromValue(String.valueOf(value));
+      return DurationUnitDto.fromValue(String.valueOf(value));
     }
   }
 }
