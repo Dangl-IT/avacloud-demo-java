@@ -3,6 +3,7 @@ package com.danglit.avacloud.client;
 import com.danglit.avacloud.client.invoker.*;
 import com.danglit.avacloud.client.invoker.auth.*;
 import com.danglit.avacloud.client.models.*;
+import com.danglit.avacloud.client.api.AvaConversionApi;
 import com.danglit.avacloud.client.api.GaebConversionApi;
 
 import java.io.File;
@@ -58,6 +59,7 @@ public final class App {
 
         File gaebInputFile = new File(gaebFilePath);
         try {
+            createRebDa11File();
             transformGaebToExcel(gaebInputFile);
             printProjectTotalPriceAndPositionCount(gaebInputFile);
         } catch (ApiException e) {
@@ -147,6 +149,38 @@ public final class App {
             System.out.print(position.getUnitTag());
             System.out.print(" - ");
             System.out.println(position.getUnitPrice());
+        }
+    }
+
+    private static void createRebDa11File() throws ApiException {
+        AvaConversionApi avaConversionApi = new AvaConversionApi();
+        ProjectDto avaProject = new ProjectDto();
+        ServiceSpecificationDto servSpec = new ServiceSpecificationDto();
+        List<ServiceSpecificationDto> servSpecs = new ArrayList<ServiceSpecificationDto>();
+        servSpecs.add(servSpec);
+        avaProject.setServiceSpecifications(servSpecs);
+        PositionDto position = new PositionDto();
+        List<CalculationDto> quantityComponents = new ArrayList<CalculationDto>();
+        position.setQuantityComponents(quantityComponents);
+        CalculationDto calculationAsRemark = new CalculationDto();
+        calculationAsRemark.setDescription("This is a text description");
+        calculationAsRemark.setFormula("20");
+        position.getQuantityComponents().add(calculationAsRemark);
+        CalculationDto calculation = new CalculationDto();
+        calculation.setFormula("14*9");
+        position.getQuantityComponents().add(calculation);
+        position.setItemNumber(new ItemNumberDto());
+        position.getItemNumber().setStringRepresentation("01");
+        servSpec.setElements(new ArrayList<IElementDto>());
+        servSpec.getElements().add(position);
+        File rebConversionResult = avaConversionApi.avaConversionConvertToReb(avaProject);
+        System.out.println("Saving REB DA11 conversion result to:");
+        System.out.println("CreatedReb.d11");
+        try {
+            Files.copy(rebConversionResult.toPath(), Paths.get("CreatedReb.d11").toAbsolutePath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            System.out.println("IO Exception while saving REB DA11 file:");
+            System.out.println(e.toString());
         }
     }
 }
