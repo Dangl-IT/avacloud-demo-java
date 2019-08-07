@@ -33,12 +33,13 @@ If you don't have values for `ClientId` and `ClientSecret` yet, you can [check o
 
 You can directly use the file `GAEBXML_EN.X86` in this repository if you don't have a GAEB file at hand.
 
-This example app does four operations:
+This example app does five operations:
 
 1. The local GAEB file is transformed to Excel and saved next to the input file
 2. The local GAEB file is converted to the unified **Dangl.AVA** format and the total price as well as the number of positions in the bill of quantities is printed to the console
 3. It prints all positions to the console, in the format: _Item Number - Short Text - Unit Tag - Unit Price_
 4. It creates a new `ProjectDto` and uses the _AvaConversion_ConvertToReb_ endpoint to create a new REB DA11 file for quantities in the project root as _CreatedReb.d11_
+5. It creates a new `ProjectDto` and uses the _AvaConversion_ConvertToGaeb_ endpoint to create a new GAEB file in the root of the project as _CreatedGaeb.X86_. It's using GAEB XML V3.2 and the X86 exchange phase.
 
 ---
 [License](./LICENSE.md)

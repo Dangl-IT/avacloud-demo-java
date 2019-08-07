@@ -62,6 +62,7 @@ public final class App {
             createRebDa11File();
             transformGaebToExcel(gaebInputFile);
             printProjectTotalPriceAndPositionCount(gaebInputFile);
+            createGaebFile();
         } catch (ApiException e) {
             System.err.println("Exception in AVACloud example");
             e.printStackTrace();
@@ -178,6 +179,39 @@ public final class App {
         System.out.println("CreatedReb.d11");
         try {
             Files.copy(rebConversionResult.toPath(), Paths.get("CreatedReb.d11").toAbsolutePath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            System.out.println("IO Exception while saving REB DA11 file:");
+            System.out.println(e.toString());
+        }
+    }
+
+    private static void createGaebFile() throws ApiException {
+        AvaConversionApi avaConversionApi = new AvaConversionApi();
+        ProjectDto avaProject = new ProjectDto();
+        ServiceSpecificationDto servSpec = new ServiceSpecificationDto();
+        List<ServiceSpecificationDto> servSpecs = new ArrayList<ServiceSpecificationDto>();
+        servSpecs.add(servSpec);
+        avaProject.setServiceSpecifications(servSpecs);
+        PositionDto position = new PositionDto();
+        List<CalculationDto> quantityComponents = new ArrayList<CalculationDto>();
+        position.setQuantityComponents(quantityComponents);
+        CalculationDto calculationAsRemark = new CalculationDto();
+        calculationAsRemark.setDescription("This is a text description");
+        calculationAsRemark.setFormula("20");
+        position.getQuantityComponents().add(calculationAsRemark);
+        CalculationDto calculation = new CalculationDto();
+        calculation.setFormula("14*9");
+        position.getQuantityComponents().add(calculation);
+        position.setItemNumber(new ItemNumberDto());
+        position.getItemNumber().setStringRepresentation("01");
+        position.setShortText("Hello GAEB!");
+        servSpec.setElements(new ArrayList<IElementDto>());
+        servSpec.getElements().add(position);
+        File gaebConversionResult = avaConversionApi.avaConversionConvertToGaeb(avaProject, DestinationGaebType.GAEB90.toString(), DestinationGaebExchangePhase.GRANT.toString());
+        System.out.println("Saving GAEB conversion result to:");
+        System.out.println("CreatedGaeb.X86");
+        try {
+            Files.copy(gaebConversionResult.toPath(), Paths.get("CreatedGaeb.X86").toAbsolutePath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.out.println("IO Exception while saving REB DA11 file:");
             System.out.println(e.toString());
