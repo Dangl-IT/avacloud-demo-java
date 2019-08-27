@@ -37,14 +37,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OenormConversionApi {
+public class AslvConversionApi {
     private ApiClient apiClient;
 
-    public OenormConversionApi() {
+    public AslvConversionApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public OenormConversionApi(ApiClient apiClient) {
+    public AslvConversionApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -57,8 +57,8 @@ public class OenormConversionApi {
     }
 
     /**
-     * Build call for oenormConversionConvertToAva
-     * @param oenormFile The input file (optional)
+     * Build call for aslvConversionConvertToAva
+     * @param aslvFile The input file (optional)
      * @param removePlainTextLongTexts If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
      * @param removeHtmlLongTexts If set to true, html long texts will be removed from the output to reduce response sizes (optional)
      * @param progressListener Progress listener
@@ -66,11 +66,11 @@ public class OenormConversionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call oenormConversionConvertToAvaCall(File oenormFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call aslvConversionConvertToAvaCall(File aslvFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/conversion/oenorm/ava";
+        String localVarPath = "/conversion/aslv/ava";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -82,8 +82,8 @@ public class OenormConversionApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (oenormFile != null)
-        localVarFormParams.put("oenormFile", oenormFile);
+        if (aslvFile != null)
+        localVarFormParams.put("aslvFile", aslvFile);
 
         final String[] localVarAccepts = {
             "application/vnd.com.dangl-it.ProjectDto.v1+json"
@@ -114,54 +114,54 @@ public class OenormConversionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call oenormConversionConvertToAvaValidateBeforeCall(File oenormFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call aslvConversionConvertToAvaValidateBeforeCall(File aslvFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = oenormConversionConvertToAvaCall(oenormFile, removePlainTextLongTexts, removeHtmlLongTexts, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = aslvConversionConvertToAvaCall(aslvFile, removePlainTextLongTexts, removeHtmlLongTexts, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Converts ÖNorm files to Dangl.AVA projects
+     * Converts Aslv files to Dangl.AVA projects
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param removePlainTextLongTexts If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
      * @param removeHtmlLongTexts If set to true, html long texts will be removed from the output to reduce response sizes (optional)
      * @return ProjectDto
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ProjectDto oenormConversionConvertToAva(File oenormFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts) throws ApiException {
-        ApiResponse<ProjectDto> resp = oenormConversionConvertToAvaWithHttpInfo(oenormFile, removePlainTextLongTexts, removeHtmlLongTexts);
+    public ProjectDto aslvConversionConvertToAva(File aslvFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts) throws ApiException {
+        ApiResponse<ProjectDto> resp = aslvConversionConvertToAvaWithHttpInfo(aslvFile, removePlainTextLongTexts, removeHtmlLongTexts);
         return resp.getData();
     }
 
     /**
-     * Converts ÖNorm files to Dangl.AVA projects
+     * Converts Aslv files to Dangl.AVA projects
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param removePlainTextLongTexts If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
      * @param removeHtmlLongTexts If set to true, html long texts will be removed from the output to reduce response sizes (optional)
      * @return ApiResponse&lt;ProjectDto&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ProjectDto> oenormConversionConvertToAvaWithHttpInfo(File oenormFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts) throws ApiException {
-        com.squareup.okhttp.Call call = oenormConversionConvertToAvaValidateBeforeCall(oenormFile, removePlainTextLongTexts, removeHtmlLongTexts, null, null);
+    public ApiResponse<ProjectDto> aslvConversionConvertToAvaWithHttpInfo(File aslvFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts) throws ApiException {
+        com.squareup.okhttp.Call call = aslvConversionConvertToAvaValidateBeforeCall(aslvFile, removePlainTextLongTexts, removeHtmlLongTexts, null, null);
         Type localVarReturnType = new TypeToken<ProjectDto>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Converts ÖNorm files to Dangl.AVA projects (asynchronously)
+     * Converts Aslv files to Dangl.AVA projects (asynchronously)
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param removePlainTextLongTexts If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
      * @param removeHtmlLongTexts If set to true, html long texts will be removed from the output to reduce response sizes (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call oenormConversionConvertToAvaAsync(File oenormFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ApiCallback<ProjectDto> callback) throws ApiException {
+    public com.squareup.okhttp.Call aslvConversionConvertToAvaAsync(File aslvFile, Boolean removePlainTextLongTexts, Boolean removeHtmlLongTexts, final ApiCallback<ProjectDto> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -182,14 +182,14 @@ public class OenormConversionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = oenormConversionConvertToAvaValidateBeforeCall(oenormFile, removePlainTextLongTexts, removeHtmlLongTexts, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = aslvConversionConvertToAvaValidateBeforeCall(aslvFile, removePlainTextLongTexts, removeHtmlLongTexts, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ProjectDto>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for oenormConversionConvertToExcel
-     * @param oenormFile The input file (optional)
+     * Build call for aslvConversionConvertToExcel
+     * @param aslvFile The input file (optional)
      * @param writePrices Defaults to true (optional)
      * @param writeLongTexts Defaults to true (optional)
      * @param conversionCulture The culture that should be used for the conversion process, to have localized Excel files (optional)
@@ -198,11 +198,11 @@ public class OenormConversionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call oenormConversionConvertToExcelCall(File oenormFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call aslvConversionConvertToExcelCall(File aslvFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/conversion/oenorm/excel";
+        String localVarPath = "/conversion/aslv/excel";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -216,8 +216,8 @@ public class OenormConversionApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (oenormFile != null)
-        localVarFormParams.put("oenormFile", oenormFile);
+        if (aslvFile != null)
+        localVarFormParams.put("aslvFile", aslvFile);
 
         final String[] localVarAccepts = {
             "text/plain", "application/json", "text/json"
@@ -248,49 +248,49 @@ public class OenormConversionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call oenormConversionConvertToExcelValidateBeforeCall(File oenormFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call aslvConversionConvertToExcelValidateBeforeCall(File aslvFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = oenormConversionConvertToExcelCall(oenormFile, writePrices, writeLongTexts, conversionCulture, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = aslvConversionConvertToExcelCall(aslvFile, writePrices, writeLongTexts, conversionCulture, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Converts ÖNorm files to Excel
+     * Converts Aslv files to Excel
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param writePrices Defaults to true (optional)
      * @param writeLongTexts Defaults to true (optional)
      * @param conversionCulture The culture that should be used for the conversion process, to have localized Excel files (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File oenormConversionConvertToExcel(File oenormFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture) throws ApiException {
-        ApiResponse<File> resp = oenormConversionConvertToExcelWithHttpInfo(oenormFile, writePrices, writeLongTexts, conversionCulture);
+    public File aslvConversionConvertToExcel(File aslvFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture) throws ApiException {
+        ApiResponse<File> resp = aslvConversionConvertToExcelWithHttpInfo(aslvFile, writePrices, writeLongTexts, conversionCulture);
         return resp.getData();
     }
 
     /**
-     * Converts ÖNorm files to Excel
+     * Converts Aslv files to Excel
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param writePrices Defaults to true (optional)
      * @param writeLongTexts Defaults to true (optional)
      * @param conversionCulture The culture that should be used for the conversion process, to have localized Excel files (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> oenormConversionConvertToExcelWithHttpInfo(File oenormFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture) throws ApiException {
-        com.squareup.okhttp.Call call = oenormConversionConvertToExcelValidateBeforeCall(oenormFile, writePrices, writeLongTexts, conversionCulture, null, null);
+    public ApiResponse<File> aslvConversionConvertToExcelWithHttpInfo(File aslvFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture) throws ApiException {
+        com.squareup.okhttp.Call call = aslvConversionConvertToExcelValidateBeforeCall(aslvFile, writePrices, writeLongTexts, conversionCulture, null, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Converts ÖNorm files to Excel (asynchronously)
+     * Converts Aslv files to Excel (asynchronously)
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param writePrices Defaults to true (optional)
      * @param writeLongTexts Defaults to true (optional)
      * @param conversionCulture The culture that should be used for the conversion process, to have localized Excel files (optional)
@@ -298,7 +298,7 @@ public class OenormConversionApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call oenormConversionConvertToExcelAsync(File oenormFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call aslvConversionConvertToExcelAsync(File aslvFile, Boolean writePrices, Boolean writeLongTexts, String conversionCulture, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -319,14 +319,14 @@ public class OenormConversionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = oenormConversionConvertToExcelValidateBeforeCall(oenormFile, writePrices, writeLongTexts, conversionCulture, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = aslvConversionConvertToExcelValidateBeforeCall(aslvFile, writePrices, writeLongTexts, conversionCulture, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for oenormConversionConvertToGaeb
-     * @param oenormFile The input file (optional)
+     * Build call for aslvConversionConvertToGaeb
+     * @param aslvFile The input file (optional)
      * @param destinationGaebType Defaults to GAEB XML V3.2 (optional)
      * @param targetExchangePhaseTransform Defaults to none, meaning no transformation will be done (optional)
      * @param progressListener Progress listener
@@ -334,11 +334,11 @@ public class OenormConversionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call oenormConversionConvertToGaebCall(File oenormFile, String destinationGaebType, String targetExchangePhaseTransform, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call aslvConversionConvertToGaebCall(File aslvFile, String destinationGaebType, String targetExchangePhaseTransform, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/conversion/oenorm/gaeb";
+        String localVarPath = "/conversion/aslv/gaeb";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -350,8 +350,8 @@ public class OenormConversionApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (oenormFile != null)
-        localVarFormParams.put("oenormFile", oenormFile);
+        if (aslvFile != null)
+        localVarFormParams.put("aslvFile", aslvFile);
 
         final String[] localVarAccepts = {
             "text/plain", "application/json", "text/json"
@@ -382,54 +382,54 @@ public class OenormConversionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call oenormConversionConvertToGaebValidateBeforeCall(File oenormFile, String destinationGaebType, String targetExchangePhaseTransform, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call aslvConversionConvertToGaebValidateBeforeCall(File aslvFile, String destinationGaebType, String targetExchangePhaseTransform, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = oenormConversionConvertToGaebCall(oenormFile, destinationGaebType, targetExchangePhaseTransform, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = aslvConversionConvertToGaebCall(aslvFile, destinationGaebType, targetExchangePhaseTransform, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Converts ÖNorm files to GAEB files.
+     * Converts Aslv files to GAEB files
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param destinationGaebType Defaults to GAEB XML V3.2 (optional)
      * @param targetExchangePhaseTransform Defaults to none, meaning no transformation will be done (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File oenormConversionConvertToGaeb(File oenormFile, String destinationGaebType, String targetExchangePhaseTransform) throws ApiException {
-        ApiResponse<File> resp = oenormConversionConvertToGaebWithHttpInfo(oenormFile, destinationGaebType, targetExchangePhaseTransform);
+    public File aslvConversionConvertToGaeb(File aslvFile, String destinationGaebType, String targetExchangePhaseTransform) throws ApiException {
+        ApiResponse<File> resp = aslvConversionConvertToGaebWithHttpInfo(aslvFile, destinationGaebType, targetExchangePhaseTransform);
         return resp.getData();
     }
 
     /**
-     * Converts ÖNorm files to GAEB files.
+     * Converts Aslv files to GAEB files
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param destinationGaebType Defaults to GAEB XML V3.2 (optional)
      * @param targetExchangePhaseTransform Defaults to none, meaning no transformation will be done (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> oenormConversionConvertToGaebWithHttpInfo(File oenormFile, String destinationGaebType, String targetExchangePhaseTransform) throws ApiException {
-        com.squareup.okhttp.Call call = oenormConversionConvertToGaebValidateBeforeCall(oenormFile, destinationGaebType, targetExchangePhaseTransform, null, null);
+    public ApiResponse<File> aslvConversionConvertToGaebWithHttpInfo(File aslvFile, String destinationGaebType, String targetExchangePhaseTransform) throws ApiException {
+        com.squareup.okhttp.Call call = aslvConversionConvertToGaebValidateBeforeCall(aslvFile, destinationGaebType, targetExchangePhaseTransform, null, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Converts ÖNorm files to GAEB files. (asynchronously)
+     * Converts Aslv files to GAEB files (asynchronously)
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param destinationGaebType Defaults to GAEB XML V3.2 (optional)
      * @param targetExchangePhaseTransform Defaults to none, meaning no transformation will be done (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call oenormConversionConvertToGaebAsync(File oenormFile, String destinationGaebType, String targetExchangePhaseTransform, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call aslvConversionConvertToGaebAsync(File aslvFile, String destinationGaebType, String targetExchangePhaseTransform, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -450,14 +450,14 @@ public class OenormConversionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = oenormConversionConvertToGaebValidateBeforeCall(oenormFile, destinationGaebType, targetExchangePhaseTransform, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = aslvConversionConvertToGaebValidateBeforeCall(aslvFile, destinationGaebType, targetExchangePhaseTransform, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for oenormConversionConvertToOenorm
-     * @param oenormFile The input file (optional)
+     * Build call for aslvConversionConvertToOenorm
+     * @param aslvFile The input file (optional)
      * @param destinationOenormType Defaults to Lv2015 (optional)
      * @param tryRepairProjectStructure Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
      * @param progressListener Progress listener
@@ -465,11 +465,11 @@ public class OenormConversionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call oenormConversionConvertToOenormCall(File oenormFile, String destinationOenormType, Boolean tryRepairProjectStructure, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call aslvConversionConvertToOenormCall(File aslvFile, String destinationOenormType, Boolean tryRepairProjectStructure, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/conversion/oenorm/oenorm";
+        String localVarPath = "/conversion/aslv/oenorm";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -481,8 +481,8 @@ public class OenormConversionApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (oenormFile != null)
-        localVarFormParams.put("oenormFile", oenormFile);
+        if (aslvFile != null)
+        localVarFormParams.put("aslvFile", aslvFile);
 
         final String[] localVarAccepts = {
             "text/plain", "application/json", "text/json"
@@ -513,54 +513,54 @@ public class OenormConversionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call oenormConversionConvertToOenormValidateBeforeCall(File oenormFile, String destinationOenormType, Boolean tryRepairProjectStructure, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call aslvConversionConvertToOenormValidateBeforeCall(File aslvFile, String destinationOenormType, Boolean tryRepairProjectStructure, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = oenormConversionConvertToOenormCall(oenormFile, destinationOenormType, tryRepairProjectStructure, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = aslvConversionConvertToOenormCall(aslvFile, destinationOenormType, tryRepairProjectStructure, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Converts ÖNorm files to Oenorm files.
+     * Converts Aslv files to Oenorm files
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param destinationOenormType Defaults to Lv2015 (optional)
      * @param tryRepairProjectStructure Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File oenormConversionConvertToOenorm(File oenormFile, String destinationOenormType, Boolean tryRepairProjectStructure) throws ApiException {
-        ApiResponse<File> resp = oenormConversionConvertToOenormWithHttpInfo(oenormFile, destinationOenormType, tryRepairProjectStructure);
+    public File aslvConversionConvertToOenorm(File aslvFile, String destinationOenormType, Boolean tryRepairProjectStructure) throws ApiException {
+        ApiResponse<File> resp = aslvConversionConvertToOenormWithHttpInfo(aslvFile, destinationOenormType, tryRepairProjectStructure);
         return resp.getData();
     }
 
     /**
-     * Converts ÖNorm files to Oenorm files.
+     * Converts Aslv files to Oenorm files
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param destinationOenormType Defaults to Lv2015 (optional)
      * @param tryRepairProjectStructure Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<File> oenormConversionConvertToOenormWithHttpInfo(File oenormFile, String destinationOenormType, Boolean tryRepairProjectStructure) throws ApiException {
-        com.squareup.okhttp.Call call = oenormConversionConvertToOenormValidateBeforeCall(oenormFile, destinationOenormType, tryRepairProjectStructure, null, null);
+    public ApiResponse<File> aslvConversionConvertToOenormWithHttpInfo(File aslvFile, String destinationOenormType, Boolean tryRepairProjectStructure) throws ApiException {
+        com.squareup.okhttp.Call call = aslvConversionConvertToOenormValidateBeforeCall(aslvFile, destinationOenormType, tryRepairProjectStructure, null, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Converts ÖNorm files to Oenorm files. (asynchronously)
+     * Converts Aslv files to Oenorm files (asynchronously)
      * 
-     * @param oenormFile The input file (optional)
+     * @param aslvFile The input file (optional)
      * @param destinationOenormType Defaults to Lv2015 (optional)
      * @param tryRepairProjectStructure Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call oenormConversionConvertToOenormAsync(File oenormFile, String destinationOenormType, Boolean tryRepairProjectStructure, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call aslvConversionConvertToOenormAsync(File aslvFile, String destinationOenormType, Boolean tryRepairProjectStructure, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -581,7 +581,7 @@ public class OenormConversionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = oenormConversionConvertToOenormValidateBeforeCall(oenormFile, destinationOenormType, tryRepairProjectStructure, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = aslvConversionConvertToOenormValidateBeforeCall(aslvFile, destinationOenormType, tryRepairProjectStructure, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
