@@ -213,7 +213,7 @@ public final class App {
         try {
             Files.copy(gaebConversionResult.toPath(), Paths.get("CreatedGaeb.X86").toAbsolutePath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            System.out.println("IO Exception while saving REB DA11 file:");
+            System.out.println("IO Exception while saving GAEB file:");
             System.out.println(e.toString());
         }
     }
