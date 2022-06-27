@@ -20,6 +20,7 @@ public final class App {
 
     /**
      * Says hello to the world.
+     * 
      * @param args The arguments of the program.
      */
     public static void main(String[] args) {
@@ -46,7 +47,7 @@ public final class App {
         String bearerToken;
         try {
             bearerToken = DanglIdentityUtils.getBearerToken(clientId, clientSecret);
-        } catch (IOException e)  {
+        } catch (IOException e) {
             System.out.println("IO Exception while obtaining access token:");
             System.out.println(e.toString());
             return;
@@ -71,12 +72,13 @@ public final class App {
 
     private static void transformGaebToExcel(File gaebFile) throws ApiException {
         GaebConversionApi gaebConversionApi = new GaebConversionApi();
-        File excelConversionResult = gaebConversionApi.gaebConversionConvertToExcel(gaebFile, true, true, "de");
+        File excelConversionResult = gaebConversionApi.gaebConversionConvertToExcel(gaebFile, true, true, true, "de");
         String excelResultFilePath = gaebFile.getAbsolutePath() + ".xlsx";
         System.out.println("Saving Excel conversion result to:");
         System.out.println(excelResultFilePath);
         try {
-            Files.copy(excelConversionResult.toPath(), Paths.get(excelResultFilePath).toAbsolutePath(), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(excelConversionResult.toPath(), Paths.get(excelResultFilePath).toAbsolutePath(),
+                    StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.out.println("IO Exception while saving Excel file:");
             System.out.println(e.toString());
@@ -85,7 +87,7 @@ public final class App {
 
     private static void printProjectTotalPriceAndPositionCount(File gaebFile) throws ApiException {
         GaebConversionApi gaebConversionApi = new GaebConversionApi();
-        ProjectDto project = gaebConversionApi.gaebConversionConvertToAva(gaebFile, true, true);
+        ProjectDto project = gaebConversionApi.gaebConversionConvertToAva(gaebFile, true, true, true);
         BigDecimal totalPrice = getProjectTotalPrice(project);
         System.out.println("Project total price (net): " + totalPrice);
         Integer countOfPositions = getProjectPositionCount(project);
@@ -96,26 +98,26 @@ public final class App {
 
     private static BigDecimal getProjectTotalPrice(ProjectDto project) {
         return project
-            .getServiceSpecifications()
-            .get(0)
-            .getTotalPrice();
-    } 
+                .getServiceSpecifications()
+                .get(0)
+                .getTotalPrice();
+    }
 
     private static Integer getProjectPositionCount(ProjectDto project) {
         ServiceSpecificationDto servSpec = project
-            .getServiceSpecifications()
-            .get(0);
+                .getServiceSpecifications()
+                .get(0);
         Integer positionsCount = getPositionsInElementList(servSpec.getElements());
         return positionsCount;
     }
 
     private static Integer getPositionsInElementList(List<IElementDto> elements) {
         Integer positionsCount = 0;
-        for(IElementDto element: elements) {
+        for (IElementDto element : elements) {
             if (element instanceof PositionDto) {
                 positionsCount++;
             } else if (element instanceof ServiceSpecificationGroupDto) {
-                positionsCount += getPositionsInElementList(((ServiceSpecificationGroupDto)element).getElements());
+                positionsCount += getPositionsInElementList(((ServiceSpecificationGroupDto) element).getElements());
             }
         }
         return positionsCount;
@@ -124,11 +126,11 @@ public final class App {
     private static List<PositionDto> getPositions(List<IElementDto> elements) {
         List<PositionDto> positions = new ArrayList<PositionDto>();
 
-        for(IElementDto element: elements) {
+        for (IElementDto element : elements) {
             if (element instanceof PositionDto) {
-                positions.add((PositionDto)element);
+                positions.add((PositionDto) element);
             } else if (element instanceof ServiceSpecificationGroupDto) {
-                List<PositionDto> subPositions = getPositions(((ServiceSpecificationGroupDto)element).getElements());
+                List<PositionDto> subPositions = getPositions(((ServiceSpecificationGroupDto) element).getElements());
                 positions.addAll(subPositions);
             }
         }
@@ -138,11 +140,11 @@ public final class App {
 
     private static void printPositionsInProject(ProjectDto project) {
         ServiceSpecificationDto servSpec = project
-            .getServiceSpecifications()
-            .get(0);
+                .getServiceSpecifications()
+                .get(0);
         List<PositionDto> positions = getPositions(servSpec.getElements());
 
-        for(PositionDto position: positions) {
+        for (PositionDto position : positions) {
             System.out.print(position.getItemNumber().getStringRepresentation());
             System.out.print(" - ");
             System.out.print(position.getShortText());
@@ -174,11 +176,13 @@ public final class App {
         position.getItemNumber().setStringRepresentation("01");
         servSpec.setElements(new ArrayList<IElementDto>());
         servSpec.getElements().add(position);
-        File rebConversionResult = avaConversionApi.avaConversionConvertToReb(avaProject);
+        File rebConversionResult = avaConversionApi.avaConversionConvertToReb(avaProject, true,
+                DestinationRebType.D11.toString());
         System.out.println("Saving REB DA11 conversion result to:");
         System.out.println("CreatedReb.d11");
         try {
-            Files.copy(rebConversionResult.toPath(), Paths.get("CreatedReb.d11").toAbsolutePath(), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(rebConversionResult.toPath(), Paths.get("CreatedReb.d11").toAbsolutePath(),
+                    StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.out.println("IO Exception while saving REB DA11 file:");
             System.out.println(e.toString());
@@ -207,11 +211,18 @@ public final class App {
         position.setShortText("Hello GAEB!");
         servSpec.setElements(new ArrayList<IElementDto>());
         servSpec.getElements().add(position);
-        File gaebConversionResult = avaConversionApi.avaConversionConvertToGaeb(avaProject, DestinationGaebType.GAEB90.toString(), DestinationGaebExchangePhase.GRANT.toString());
+        File gaebConversionResult = avaConversionApi.avaConversionConvertToGaeb(avaProject,
+                false,
+                DestinationGaebType.GAEB90.toString(),
+                DestinationGaebExchangePhase.GRANT.toString(),
+                false,
+                false,
+                false);
         System.out.println("Saving GAEB conversion result to:");
         System.out.println("CreatedGaeb.X86");
         try {
-            Files.copy(gaebConversionResult.toPath(), Paths.get("CreatedGaeb.X86").toAbsolutePath(), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(gaebConversionResult.toPath(), Paths.get("CreatedGaeb.X86").toAbsolutePath(),
+                    StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.out.println("IO Exception while saving GAEB file:");
             System.out.println(e.toString());
