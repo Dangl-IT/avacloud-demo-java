@@ -1,11 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.danglit.avacloud.client</groupId>
     <artifactId>com.danglit.avacloud.client</artifactId>
     <packaging>jar</packaging>
     <name>com.danglit.avacloud.client</name>
-    <version>1.29.0</version>
+    <version>1.55.0</version>
     <url>https://www.dangl-it.com</url>
     <description>AVACloud Java Client - GAEB &amp; AVA as a Service</description>
     <scm>
@@ -100,8 +100,8 @@
                     <executions>
                         <execution>
                             <goals>
-                                <goal>jar</goal>
-                                <goal>test-jar</goal>
+                            <goal>jar</goal>
+                            <goal>test-jar</goal>
                             </goals>
                         </execution>
                     </executions>

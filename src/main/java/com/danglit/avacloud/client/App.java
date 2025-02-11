@@ -73,7 +73,7 @@ public final class App {
     private static void transformGaebToExcel(File gaebFile) throws ApiException {
         GaebConversionApi gaebConversionApi = new GaebConversionApi();
         File excelConversionResult = gaebConversionApi.gaebConversionConvertToExcel(gaebFile, true, true, true, "de",
-                false, false, false);
+                false, false, false, false, false, false);
         String excelResultFilePath = gaebFile.getAbsolutePath() + ".xlsx";
         System.out.println("Saving Excel conversion result to:");
         System.out.println(excelResultFilePath);
@@ -89,7 +89,7 @@ public final class App {
     private static void printProjectTotalPriceAndPositionCount(File gaebFile) throws ApiException {
         GaebConversionApi gaebConversionApi = new GaebConversionApi();
         ProjectDto project = gaebConversionApi.gaebConversionConvertToAva(gaebFile, true, true, true, false, false,
-                false);
+                false, false);
         BigDecimal totalPrice = getProjectTotalPrice(project);
         System.out.println("Project total price (net): " + totalPrice);
         Integer countOfPositions = getProjectPositionCount(project);
@@ -179,7 +179,8 @@ public final class App {
         servSpec.setElements(new ArrayList<IElementDto>());
         servSpec.getElements().add(position);
         File rebConversionResult = avaConversionApi.avaConversionConvertToReb(avaProject, true,
-                DestinationRebType.D11.toString());
+                DestinationRebType.D11.toString(),
+                null);
         System.out.println("Saving REB DA11 conversion result to:");
         System.out.println("CreatedReb.d11");
         try {
