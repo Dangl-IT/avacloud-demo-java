@@ -25,18 +25,20 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Determines the type of an ItemNumberSchema
+ * The target format for the XRechnung export
  */
-@JsonAdapter(ItemNumberTypeDto.Adapter.class)
-public enum ItemNumberTypeDto {
+@JsonAdapter(DestinationXRechnungFormat.Adapter.class)
+public enum DestinationXRechnungFormat {
   
-  NUMERIC("Numeric"),
+  UBL("Ubl"),
   
-  ALPHANUMERIC("Alphanumeric");
+  CROSSINDUSTRYINVOICE("CrossIndustryInvoice"),
+  
+  FACTURX("FacturX");
 
   private String value;
 
-  ItemNumberTypeDto(String value) {
+  DestinationXRechnungFormat(String value) {
     this.value = value;
   }
 
@@ -49,8 +51,8 @@ public enum ItemNumberTypeDto {
     return String.valueOf(value);
   }
 
-  public static ItemNumberTypeDto fromValue(String text) {
-    for (ItemNumberTypeDto b : ItemNumberTypeDto.values()) {
+  public static DestinationXRechnungFormat fromValue(String text) {
+    for (DestinationXRechnungFormat b : DestinationXRechnungFormat.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -58,16 +60,16 @@ public enum ItemNumberTypeDto {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<ItemNumberTypeDto> {
+  public static class Adapter extends TypeAdapter<DestinationXRechnungFormat> {
     @Override
-    public void write(final JsonWriter jsonWriter, final ItemNumberTypeDto enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final DestinationXRechnungFormat enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public ItemNumberTypeDto read(final JsonReader jsonReader) throws IOException {
+    public DestinationXRechnungFormat read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return ItemNumberTypeDto.fromValue(String.valueOf(value));
+      return DestinationXRechnungFormat.fromValue(String.valueOf(value));
     }
   }
 }
