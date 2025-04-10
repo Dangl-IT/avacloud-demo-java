@@ -40,6 +40,7 @@ This example app does five operations:
 3. It prints all positions to the console, in the format: _Item Number - Short Text - Unit Tag - Unit Price_
 4. It creates a new `ProjectDto` and uses the _AvaConversion_ConvertToReb_ endpoint to create a new REB DA11 file for quantities in the project root as _CreatedReb.d11_
 5. It creates a new `ProjectDto` and uses the _AvaConversion_ConvertToGaeb_ endpoint to create a new GAEB file in the root of the project as _CreatedGaeb.X86_. It's using GAEB XML V3.2 and the X86 exchange phase.
+6. Two invoices are created, one in the `XRechnung` format and one in `Factur-X` / `ZUGFeRD`
 
 ## AVACloud Key Features
 

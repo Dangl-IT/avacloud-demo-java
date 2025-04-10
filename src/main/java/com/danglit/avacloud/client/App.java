@@ -5,6 +5,7 @@ import com.danglit.avacloud.client.invoker.auth.*;
 import com.danglit.avacloud.client.models.*;
 import com.danglit.avacloud.client.api.AvaConversionApi;
 import com.danglit.avacloud.client.api.GaebConversionApi;
+import com.danglit.avacloud.client.api.XRechnungConversionApi;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.OffsetDateTime;
 import java.util.*;
 
 public final class App {
@@ -64,6 +66,7 @@ public final class App {
             transformGaebToExcel(gaebInputFile);
             printProjectTotalPriceAndPositionCount(gaebInputFile);
             createGaebFile();
+            createInvoices();
         } catch (ApiException e) {
             System.err.println("Exception in AVACloud example");
             e.printStackTrace();
@@ -230,6 +233,45 @@ public final class App {
                     StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.out.println("IO Exception while saving GAEB file:");
+            System.out.println(e.toString());
+        }
+    }
+
+    private static void createInvoices() throws ApiException {
+        XRechnungConversionApi invoiceConversionApi = new XRechnungConversionApi();
+
+        // This code example is just about how the calls to AVACloud are made - the
+        // 'invoice' object
+        // created below is missing almost all required information, and will not create
+        // a valid
+        // invoice
+        Invoice invoice = new Invoice();
+        invoice.setInvoiceNumber("1234567890");
+        invoice.setInvoiceDate(OffsetDateTime.now());
+
+        // We're first creating a regular XRechnung invoice
+        File xrechnungConversionResult = invoiceConversionApi.xRechnungConversionConvertInvoiceToXRechnung(invoice,
+                "UBL");
+        System.out.println("Saving XRechnung conversion result to:");
+        System.out.println("XRechnung.xml");
+        try {
+            Files.copy(xrechnungConversionResult.toPath(), Paths.get("XRechnung.xml").toAbsolutePath(),
+                    StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            System.out.println("IO Exception while saving XRechnung file:");
+            System.out.println(e.toString());
+        }
+
+        // Then we export it to the Factur-X / ZUGFeRD invoice format
+        File facturXConversionResult = invoiceConversionApi.xRechnungConversionConvertInvoiceToXRechnung(invoice,
+                "FacturX");
+        System.out.println("Saving Factur-X / ZUGFeRD conversion result to:");
+        System.out.println("FacturX.xml");
+        try {
+            Files.copy(facturXConversionResult.toPath(), Paths.get("FacturX.xml").toAbsolutePath(),
+                    StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            System.out.println("IO Exception while saving Factur-X / ZUGFeRD file:");
             System.out.println(e.toString());
         }
     }
